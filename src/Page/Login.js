@@ -1,15 +1,20 @@
 import { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import Api from "../Api/CreateInstanceApi";
 
 
 const Login=()=>{
+  const Navigate=useNavigate()
   let [Email,SetEmail]=useState('');
   let [Password,SetPassword]=useState('');
   let [Erorr,SetErorr]=useState('');
 
   const ValdtionLogin=(data)=>{
-    if(Email.length>=8&&Password.length>=8){     Api.post('/login',{email:Email,password:Password}).then((d)=>{console.log(d)})
+    if(Email.length>=8&&Password.length>=8){     Api.post('/login',{email:Email,password:Password}).then((d)=>{
+      sessionStorage.setItem('token','d.headers.token');
+      Navigate('/')
+      
+    })
     .catch((e)=>{if(e.response.status==400){SetErorr(e.response.data.err)}})  }
     else if(Email.length<8){SetErorr('must email contain least 8 charectars')}
     else if(Password.length<8){SetErorr('must pssword contain least 8 charectars')}
@@ -26,7 +31,7 @@ const Login=()=>{
             <p className="text-xl font-semibold pb-1">Email</p>
             <input onChange={(e)=>{e.preventDefault();SetEmail(e.target.value)}} className=" border-2 border-gray-500 py-1 rounded-md mb-4 w-4/5 xl:w-3/5" type="text" placeholder="Enter your email"></input>
             <p className="text-xl font-semibold pb-1">Password</p>
-            <input onChange={(e)=>{e.preventDefault();SetPassword(e.target.value)}} className=" border-2 border-gray-500 py-1 rounded-md mb-4 w-4/5 xl:w-3/5 " type="text" placeholder="Enter your password"></input>
+            <input type="password" onChange={(e)=>{e.preventDefault();SetPassword(e.target.value)}} className=" border-2 border-gray-500 py-1 rounded-md mb-4 w-4/5 xl:w-3/5 "  placeholder="Enter your password"></input>
         </div>
 
         <div className=" flex  "><button onClick={(e)=>{e.preventDefault();ValdtionLogin()}} className="text-white bg-blue-700 ml-4  py-2 rounded-xl  w-3/5 xl:w-2/5">Login</button></div>

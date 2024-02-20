@@ -1,18 +1,23 @@
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link,useNavigate } from "react-router-dom";
 
 import Api from "../Api/CreateInstanceApi";
 const Signup=()=>{
+      
+    
+    const Navigate=useNavigate();
     let [Name,SetName]=useState('');
     let [Email,SetEmail]=useState('');
     let [Password,SetPassword]=useState('');
     let [Erorr,SetErorr]=useState('');
-    const SignAccountinDataBase=()=>{
+    const SignAccountinDataBase=()=>{ 
         if(Email.length>=8&&Password.length>=8){    
             Api.post('/signup',{name:Name,email:Email,password:Password})
-        .then((d)=>{
+        .then((d)=>{console.log(d)
             if(d.status=200){ 
-                
+             
+                sessionStorage.setItem('token',d.data);
+                Navigate('/') 
             }
         })
         .catch((e)=>{if(e.response.status=403){
@@ -45,7 +50,7 @@ const Signup=()=>{
             className="FormatInput mt-1" placeholder="Enter your Email "></input>
 
             <p className=" font-bold">Password</p>
-            <input onChange={(e)=>{SetPassword(e.target.value)}}
+            <input  type="password" onChange={(e)=>{SetPassword(e.target.value)}}
              className="FormatInput mt-1" placeholder="Enter your Password " ></input>
         </div>
 

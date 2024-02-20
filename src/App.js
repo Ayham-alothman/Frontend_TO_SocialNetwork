@@ -1,5 +1,6 @@
 
 import {BrowserRouter,Route,Routes} from 'react-router-dom'
+import ProtectinRoute from './Utility/ProtectionRoute';
 
 import Erorr from './Page/Erorr'; 
 import Signup from './Page/Signup';
@@ -11,7 +12,10 @@ function App() {
     <BrowserRouter>
     
      <Routes>
-      <Route path='/' element={<Home/>}></Route>
+      <Route element={<ProtectinRoute/>}>
+       <Route path='/' element={<Home/>}></Route>
+      </Route>
+      
       <Route path='login' element={<Login/>}></Route>
       <Route path='signup' element={<Signup/>}></Route>
       <Route path='*' element={<Erorr/>}></Route>
