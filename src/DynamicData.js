@@ -29,5 +29,15 @@ let Posts=[{
     owner:12,
     comments:2
 }]
+const UsersOnline=[
+    {id:1,name:'samer'},
+    {id:2,name:'samer2'},
+    {id:3,name:'samer3'},
+    {id:3,name:'samer3'},
+    {id:3,name:'samer3'},
+    {id:3,name:'samer3'},
+    {id:3,name:'samer3'},
+    {id:3,name:'samer3'},
+]
 
-export default Posts;
+export default {Posts,UsersOnline};
