@@ -6,6 +6,7 @@ import Erorr from './Page/Erorr';
 import Signup from './Page/Signup';
 import Login from './Page/Login';
 import Home from './Page/Home';
+import Profail from './Page/Profail';
 function App() {
   return (
     <>
@@ -14,6 +15,8 @@ function App() {
      <Routes>
       <Route element={<ProtectinRoute/>}>
        <Route path='/' element={<Home/>}></Route>
+       <Route path='/profail/:id' element={<Profail/>}></Route>
+       
       </Route>
       
       <Route path='login' element={<Login/>}></Route>

@@ -21,7 +21,7 @@ const Home=()=>{ console.log(DataPost.UsersOnline)
                 }
             </div>
             {/*Sdiv*/ }
-            <div className=" bg-gray-200 rounded-2xl  md:col-span-2 h-dvh overflow-scroll		">
+            <div className="Containerposts">
                 {
                     DataPost.Posts.map((ele,ind)=>{
                         return(<Post id={ele.id}/>)
