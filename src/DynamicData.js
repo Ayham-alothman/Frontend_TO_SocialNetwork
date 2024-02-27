@@ -39,5 +39,25 @@ const UsersOnline=[
     {id:3,name:'samer3'},
     {id:3,name:'samer3'},
 ]
+const Converations =[ 
+    {name:'ayham1', idc:1},
+    {name:'ayham', idc:12},
+    {name:'ayham', idc:13},
+    {name:'ayham', idc:14 },
+    {name:'ayham', idc:15 },
+    {name:'ayham', idc:16 },
+    {name:'ayham', idc:17 }, ]
 
-export default {Posts,UsersOnline};
+const Mesagess=[
+    {id:1 ,own:1 ,date:Date.now(),content:'the content of message'},
+    {id:1 ,own:2 ,date:Date.now(),content:'the content of message'},
+    {id:1 ,own:1 ,date:Date.now(),content:'the content of message'},
+    {id:1 ,own:2 ,date:Date.now(),content:'the content of message'},
+    {id:1 ,own:2 ,date:Date.now(),content:'the content of message'},
+    {id:1 ,own:1 ,date:Date.now(),content:'the content of message'},
+    {id:1 ,own:2 ,date:Date.now(),content:'the content of message'},
+]
+
+
+  const aa={Posts:Posts,Converations:Converations,UsersOnline:UsersOnline,Mesagess:Mesagess};
+export default aa;

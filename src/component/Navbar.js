@@ -8,7 +8,7 @@ import LogoApp from '../Images/LogoApp2.png'
 import User from '../Images/User.jpeg'
 import { useState } from "react";
 
-const Navbar=()=>{
+const Navbar=(data)=>{
     let [Show,SetShow]=useState(false)
     
 
@@ -16,7 +16,7 @@ const Navbar=()=>{
         <div className="flex justify-between items-center bg-blue-700 h-16 px-5">
             {/* Fdiv */}
             <div className="  flex justify-center items-center space-x-2">
-                <div className=" text-xl font-bold text-white">Ayhamzain</div>
+                <div className=" text-xl font-bold text-white">{data.nameUser}</div>
                 <div className="h-12 w-12  " >    <img className=" rounded-full" src={User}></img></div>
                 <div className=" text-2xl text-white"><IoNotifications /></div>
                 <div className=" text-2xl text-white sm:hidden" onClick={()=>{SetShow(!Show)}}><FaPlus /></div>

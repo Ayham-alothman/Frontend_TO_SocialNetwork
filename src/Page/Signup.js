@@ -20,10 +20,13 @@ const Signup=()=>{
                 Navigate('/') 
             }
         })
-        .catch((e)=>{if(e.response.status=403){
+        .catch((e)=>{
+            if(e.request.readyState==4){SetErorr('the server out servieses')}
+            else if(e.response.status=403){
             
             SetErorr(e.response.data.e)
-        }})
+        }
+    })
 
           }
     else if(Email.length<8){SetErorr('must email contain least 8 charectars')}

@@ -10,14 +10,17 @@ const Login=()=>{
   let [Erorr,SetErorr]=useState('');
 
   const ValdtionLogin=(data)=>{
-    if(Email.length>=8&&Password.length>=8){     Api.post('/login',{email:Email,password:Password}).then((d)=>{
-      sessionStorage.setItem('token','d.headers.token');
-      Navigate('/')
+    if(Email.length>=8&&Password.length>=8){   
+        Api.post('/login',{email:Email,password:Password})
+        .then((d)=>{
+         sessionStorage.setItem('token',d.headers.token);
+         Navigate('/')
       
-    })
-    .catch((e)=>{if(e.response.status==400){SetErorr(e.response.data.err)}})  }
-    else if(Email.length<8){SetErorr('must email contain least 8 charectars')}
-    else if(Password.length<8){SetErorr('must pssword contain least 8 charectars')}
+         })
+         .catch((e)=>{console.log(e)
+             if(e.response.status==400){SetErorr(e.response.data.err)}})  }
+             else if(Email.length<8){SetErorr('must email contain least 8 charectars')}
+             else if(Password.length<8){SetErorr('must pssword contain least 8 charectars')}
   }
 
     return(<>
