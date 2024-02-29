@@ -6,7 +6,33 @@ import Post from "../component/Post";
 import Api from '../Api/CreateInstanceApi'
 import { useEffect, useState } from "react";
 const Profail=()=>{
-       const idUser= useParams()
+    const idUser= useParams()
+       
+    useEffect(()=>{
+        Api.get(`/profail/${idUser.id}`)
+        .then((d)=>{setState(d.data.state);sethisName(d.data.name)})
+        .catch((e)=>{console.log(e)})
+       },[])
+       
+       const addFriend=()=>{
+        Api.post('/friend/add',{id:idUser.id}).then((d)=>{    window.location.reload()        })
+       }
+       const cancelRequest=()=>{
+        Api.post('/friend/cancel',{id:idUser.id}).then((d)=>{window.location.reload()})
+       }
+       const acceptRequest=()=>{
+        Api.post('/friend/submite',{id:idUser.id}).then((d)=>{window.location.reload()})
+
+       }
+       const rejectRequest=()=>{
+        Api.post('/friend/cancelsubmite',{id:idUser.id}).then((d)=>{window.location.reload()})
+
+       }
+       const deleteFriend=()=>{
+        Api.post('/friend/delete',{id:idUser.id}).then((d)=>{window.location.reload()})
+       }
+
+       
     let [hisName,sethisName]= useState('');
        
      let [myAccount,SetmyAccount]= useState(false);
@@ -47,8 +73,8 @@ const Profail=()=>{
         }
         else if(state==5){
             SetmyAccount(false)
-            SetFriend(true)
-            SetNoFriend(false)
+            SetFriend(false)
+            SetNoFriend(true)
             SetNoHesend(false)
             Setyousend(false)
         }
@@ -81,29 +107,29 @@ const Profail=()=>{
                     </>:false}
                 {Friend?<>
                 <div className="Containertwobutton">
-                    <button className="Btncon">Cancel Friend</button>
+                    <button className="Btncon" onClick={(e)=>{deleteFriend()}}>Cancel Friend</button>
                     <button className="Btncon">Message</button>
 
                 </div>
                 </>:false} 
                 {NoFriend?<>
                 <div className="Containertwobutton">
-                    <button className="Btncon">Add Friend</button>
+                    <button className="Btncon" onClick={()=>{addFriend()}}>Add Friend</button>
                     <button className="Btncon">Message</button>
 
                 </div>
                 </>:false}    
                 {Hesend?<>
                     <div className="Containertwobutton">
-                    <button className="Btncon">Accept request</button>
-                    <button className="Btncon">Cancel request</button>
+                    <button className="Btncon" onClick={()=>{acceptRequest()}}>Accept request</button>
+                    <button className="Btncon"onClick={()=>{rejectRequest()}}>Cancel request</button>
                     <button className="Btncon">Message</button>
 
                     </div>
                 </>:false}    
                 {yousend?<>
                     <div className="Containertwobutton">
-                    <button className="Btncon">Cancel request</button>
+                    <button className="Btncon" onClick={()=>{cancelRequest()}}>Cancel request</button>
                     <button className="Btncon">Message</button>
 
                     </div>
