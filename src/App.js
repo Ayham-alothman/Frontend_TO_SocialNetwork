@@ -1,14 +1,14 @@
 
 import {BrowserRouter,Route,Routes} from 'react-router-dom'
-import ProtectinRoute from './Utility/ProtectionRoute';
+import ProtectinRoute from './Utility/ProtectionRoute.js';
 
-import Erorr from './Page/Erorr'; 
-import Signup from './Page/Signup';
-import Login from './Page/Login';
-import Home from './Page/Home';
-import Profail from './Page/Profail';
-import Chat from './Page/Chat';
-import ChatId from './Page/ChatId';
+import Erorr from './Page/Erorr.js'; 
+import Signup from './Page/Signup.js';
+import Login from './Page/Login.js';
+import Home from './Page/Home.js';
+import Profail from './Page/Profail.js';
+import Chat from './Page/Chat.js';
+import ChatId from './Page/ChatId.js';
 function App() {
   return (
     <>

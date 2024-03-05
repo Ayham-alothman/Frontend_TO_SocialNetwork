@@ -1,7 +1,7 @@
 import User from '../Images/User.jpeg'
 import { IoMdSend } from "react-icons/io";
-import aa from '../DynamicData';
-import Mesages from '../component/Mesages';
+import aa from '../DynamicData.js';
+import Mesages from '../component/Mesages.js';
 import { useState } from 'react';
 
 const ChatId=()=>{

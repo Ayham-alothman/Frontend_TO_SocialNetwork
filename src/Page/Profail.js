@@ -1,9 +1,9 @@
 import { useParams } from "react-router-dom";
 import User from '../Images/User.jpeg'
 import Cover from '../Images/Cover.png'
-import DataPost from '../DynamicData'
-import Post from "../component/Post";
-import Api from '../Api/CreateInstanceApi'
+import DataPost from '../DynamicData.js'
+import Post from "../component/Post.js";
+import Api from '../Api/CreateInstanceApi.js'
 import { useEffect, useState } from "react";
 const Profail=()=>{
     const idUser= useParams()

@@ -1,6 +1,6 @@
 import { useNavigate } from 'react-router-dom';
-import Dynamicdata from '../DynamicData'
-import Converation from '../component/Converation';
+import Dynamicdata from '../DynamicData.js'
+import Converation from '../component/Converation.js';
 const Chat=()=>{
   const Navigate=useNavigate()
   const Navigatechat=(idchat)=>{

@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import Api from "../Api/CreateInstanceApi";
+import Api from "../Api/CreateInstanceApi.js";
 
 
 const Login=()=>{
