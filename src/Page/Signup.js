@@ -14,15 +14,15 @@ const Signup=()=>{
         if(Email.length>=8&&Password.length>=8){    
             Api.post('/signup',{name:Name,email:Email,password:Password})
         .then((d)=>{console.log(d)
-            if(d.status=200){ 
+            if(d.status===200){ 
              
                 sessionStorage.setItem('token',d.data);
                 Navigate('/') 
             }
         })
         .catch((e)=>{
-            if(e.request.readyState==4){SetErorr('the server out servieses')}
-            else if(e.response.status=403){
+            if(e.request.readyState===4){SetErorr('the server out servieses')}
+            else if(e.response.status===403){
             
             SetErorr(e.response.data.e)
         }

@@ -1,10 +1,15 @@
-import { useEffect, useState } from "react";
+import {  useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import Api from "../Api/CreateInstanceApi.js";
+import {  decodeToken } from "react-jwt";
+import {useDispatch} from "react-redux";
+import {actionSliceuser} from '../GlobalState/Slices/UserSlice.js';
 
 
 const Login=()=>{
+  const Dispatch=useDispatch()
   const Navigate=useNavigate()
+  const {setUser}=actionSliceuser;
   let [Email,SetEmail]=useState('');
   let [Password,SetPassword]=useState('');
   let [Erorr,SetErorr]=useState('');
@@ -14,11 +19,21 @@ const Login=()=>{
         Api.post('/login',{email:Email,password:Password})
         .then((d)=>{
          sessionStorage.setItem('token',d.headers.token);
+         const decodeTokenn=decodeToken(d.headers.token);
+         const payload={
+          id:decodeTokenn.id,
+          name:decodeTokenn.name,
+          email:decodeTokenn.email,
+          friends:decodeTokenn.friends,
+          sendrequest:decodeTokenn.sendreq,
+          receiverequest:decodeTokenn.receivereq
+        }
+        Dispatch(setUser(payload))
          Navigate('/')
       
          })
          .catch((e)=>{console.log(e)
-             if(e.response.status==400){SetErorr(e.response.data.err)}})  }
+             if(e.response.status===400){SetErorr(e.response.data.err)}})  }
              else if(Email.length<8){SetErorr('must email contain least 8 charectars')}
              else if(Password.length<8){SetErorr('must pssword contain least 8 charectars')}
   }

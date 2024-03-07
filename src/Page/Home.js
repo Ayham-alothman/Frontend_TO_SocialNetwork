@@ -2,30 +2,32 @@ import Navbar from "../component/Navbar.js";
 import DataPost from '../DynamicData.js'
 import Post from "../component/Post.js";
 import UserOnline from "../component/UserOnline.js";
-import { isExpired, decodeToken } from "react-jwt";
-import  socketIo from'../Socket.io/ConfgrationSocket.js'
+import  socketIo from'../Socket.io/ConfgrationSocket.js';
+import {useSelector} from 'react-redux'
 
 
 import { useEffect, useState } from "react";
-const token=sessionStorage.getItem('token');
+
 
 
 const Home=()=>{ 
-     let [InfoUser,SetInfoUser]=useState(decodeToken(sessionStorage.getItem('token')));
+     const User =useSelector((state)=>state.User);
+     
      let [userOnline,SetuserOnline]=useState([]);
      
-     useEffect(()=>{console.log('setuseeffect')
+     useEffect(()=>{
+        console.log(User.id);
         socketIo.connect();
-        socketIo.emit(`isonline`,InfoUser.id);
-        socketIo.emit(`onlineFriends`,InfoUser.id);
+        socketIo.emit(`isonline`,User.id);
+        socketIo.emit(`onlineFriends`,User.id);
         socketIo.on('friendsOnline',(userOnline)=>{
           SetuserOnline(userOnline)
         })
-        socketIo.on('dis',()=>{console.log('set event dis')
-         socketIo.emit(`onlineFriends`,InfoUser.id);
+        socketIo.on('dis',()=>{
+         socketIo.emit(`onlineFriends`,User.id);
         })
-        socketIo.on('newuser',()=>{console.log('set new user')
-         socketIo.emit(`onlineFriends`,InfoUser.id);
+        socketIo.on('newuser',()=>{
+         socketIo.emit(`onlineFriends`,User.id);
         })
         
         return()=>{socketIo.disconnect();}
@@ -37,7 +39,7 @@ const Home=()=>{
        
     return(<>
     <div className=" " >
-        <Navbar nameUser={InfoUser.name} />
+        <Navbar nameUser={User.name} />
         <div className=" md:grid md:grid-cols-3 md:gap-1 xl:grid-cols-4 ">
             {/*Fdiv*/ }
             <div className=" hidden bg-gray-200  h-dvh overflow-scroll   md:block md:col-span-1  ">

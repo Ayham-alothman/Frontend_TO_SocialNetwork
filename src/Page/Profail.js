@@ -12,7 +12,7 @@ const Profail=()=>{
         Api.get(`/profail/${idUser.id}`)
         .then((d)=>{setState(d.data.state);sethisName(d.data.name)})
         .catch((e)=>{console.log(e)})
-       },[])
+       },[idUser])
        
        const addFriend=()=>{
         Api.post('/friend/add',{id:idUser.id}).then((d)=>{    window.location.reload()        })
@@ -43,35 +43,35 @@ const Profail=()=>{
      
      function setState(state){
         
-        if(state==1){
+        if(state===1){
             SetmyAccount(true)
             SetFriend(false)
             SetNoFriend(false)
             SetNoHesend(false)
             Setyousend(false)
         }
-        else if(state==2){
+        else if(state===2){
             SetmyAccount(false)
             SetFriend(true)
             SetNoFriend(false)
             SetNoHesend(false)
             Setyousend(false)
         }
-        else if(state==3){
+        else if(state===3){
             SetmyAccount(false)
             SetFriend(false)
             SetNoFriend(false)
             SetNoHesend(false)
             Setyousend(true)
         }
-        else if(state==4){
+        else if(state===4){
             SetmyAccount(false)
             SetFriend(false)
             SetNoFriend(false)
             SetNoHesend(true)
             Setyousend(false)
         }
-        else if(state==5){
+        else if(state===5){
             SetmyAccount(false)
             SetFriend(false)
             SetNoFriend(true)
@@ -84,17 +84,17 @@ const Profail=()=>{
         Api.get(`/profail/${idUser.id}`)
         .then((d)=>{console.log(d)})
         .catch((e)=>{console.log(e.request)
-            if(e.request.status==0){console.log('the server out ')}
-            else if(e.request.status==403){console.log(e.request.response)}
+            if(e.request.status===0){console.log('the server out ')}
+            else if(e.request.status===403){console.log(e.request.response)}
         })
-     },[])
+     },[idUser])
 
     
        
     return(<>
      <div className="mx-auto sm:w-[650px] ">
         <div className="bg-black h-48">
-            <img src={Cover} className=" w-full h-full"></img>
+            <img src={Cover} alt="not found" className=" w-full h-full"></img>
         </div>
         <div className="bg-white h-80">
             <h1 className="LargeText flex justify-center max-sm:pl-16 pt-5">{hisName}</h1>
@@ -136,7 +136,7 @@ const Profail=()=>{
                 </>:false}
             </div>
         </div>
-        <div className="bg-black rounded-full  h-32 w-32 absolute top-40  left-1/5    "><img className="rounded-full" src={User}></img></div>
+        <div className="bg-black rounded-full  h-32 w-32 absolute top-40  left-1/5    "><img className="rounded-full" src={User} alt="not found"></img></div>
         <div>
         {
                     DataPost.Posts.map((ele,ind)=>{

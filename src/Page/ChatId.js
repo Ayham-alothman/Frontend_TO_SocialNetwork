@@ -9,7 +9,7 @@ const ChatId=()=>{
     return(<>
       <div className=" max-w-lg border-4 h-dvh mx-auto">
         <div className=" flex items-center justify-around px-5">
-            <div className='w-16 h-16'><img className='rounded-full' src={User}></img></div>
+            <div className='w-16 h-16'><img className='rounded-full' src={User} alt='not found'></img></div>
             <h1 className='LargeText text-gray-400'>name user</h1>
         </div>
         

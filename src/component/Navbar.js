@@ -3,8 +3,6 @@ import { FaPlus } from "react-icons/fa";
 import { IoMdChatboxes } from "react-icons/io";
 import { FaUserFriends } from "react-icons/fa";
 import { BsSearch } from "react-icons/bs";
-
-import LogoApp from '../Images/LogoApp2.png'
 import User from '../Images/User.jpeg'
 import { useState } from "react";
 
@@ -17,7 +15,7 @@ const Navbar=(data)=>{
             {/* Fdiv */}
             <div className="  flex justify-center items-center space-x-2">
                 <div className=" text-xl font-bold text-white">{data.nameUser}</div>
-                <div className="h-12 w-12  " >    <img className=" rounded-full" src={User}></img></div>
+                <div className="h-12 w-12  " >    <img className=" rounded-full" alt='Not found' src={User}></img></div>
                 <div className=" text-2xl text-white"><IoNotifications /></div>
                 <div className=" text-2xl text-white sm:hidden" onClick={()=>{SetShow(!Show)}}><FaPlus /></div>
                 <div className="text-2xl text-white hidden sm:block"><IoMdChatboxes/></div>
