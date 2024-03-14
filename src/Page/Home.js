@@ -16,7 +16,7 @@ const Home=()=>{
      let [userOnline,SetuserOnline]=useState([]);
      
      useEffect(()=>{
-        console.log(User.id);
+        console.log(sessionStorage.getItem('token'));
         socketIo.connect();
         socketIo.emit(`isonline`,User.id);
         socketIo.emit(`onlineFriends`,User.id);

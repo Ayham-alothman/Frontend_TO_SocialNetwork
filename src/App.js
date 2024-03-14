@@ -9,6 +9,7 @@ import Home from './Page/Home.js';
 import Profail from './Page/Profail.js';
 import Chat from './Page/Chat.js';
 import ChatId from './Page/ChatId.js';
+
 function App() {
   return (
     <>
@@ -18,7 +19,7 @@ function App() {
       <Route element={<ProtectinRoute/>}>
        <Route path='/' element={<Home/>}></Route>
        <Route path='/chat' element={<Chat/>}></Route>
-       <Route path='/chat/:id' element={<ChatId/>}></Route>
+       <Route path='/chat/:chatid' element={<ChatId/>}></Route>
        <Route path='/profail/:id' element={<Profail/>}></Route>
        
       </Route>

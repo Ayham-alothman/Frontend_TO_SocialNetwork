@@ -1,7 +1,15 @@
 import { useNavigate } from 'react-router-dom';
-import Dynamicdata from '../DynamicData.js'
 import Converation from '../component/Converation.js';
+import {useEffect,useState}from 'react';
+import Api from '../Api/CreateInstanceApi.js';
 const Chat=()=>{
+  let [Chats,setChats]=useState([])
+  
+  useEffect(()=>{
+  
+    Api.get(`/chat`)
+    .then((d)=>{setChats(d.data)})
+    .catch((e)=>{})  },)
   const Navigate=useNavigate()
   const Navigatechat=(idchat)=>{
 
@@ -14,11 +22,11 @@ const Chat=()=>{
       <div>
         <h1 className="LargeText">converations</h1>
         {
-            Dynamicdata.Converations.map((e,i)=>{
+            Chats.map((e,i)=>{
                 return (
-                <div className='px-2  h-20' key={e.idc} onClick={(ele)=>{ele.preventDefault();
-                Navigatechat(e.idc)}}>
-                  <Converation name={e.name} id={e.idc} />
+                <div className='px-2  h-20' key={i} onClick={(ele)=>{ele.preventDefault();
+                  Navigatechat(e.chatid)}}>
+                  <Converation name={e.name} id={e.chatid} />
                 </div>
                 )
 
@@ -29,7 +37,7 @@ const Chat=()=>{
       </div>
         {/*Sdiv*/}
       <div className="hdden">
-
+         v
       </div>
     </div>
     </>)

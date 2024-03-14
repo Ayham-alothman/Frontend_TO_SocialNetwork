@@ -5,6 +5,7 @@ import { FaUserFriends } from "react-icons/fa";
 import { BsSearch } from "react-icons/bs";
 import User from '../Images/User.jpeg'
 import { useState } from "react";
+import { Link } from "react-router-dom";
 
 const Navbar=(data)=>{
     let [Show,SetShow]=useState(false)
@@ -18,7 +19,7 @@ const Navbar=(data)=>{
                 <div className="h-12 w-12  " >    <img className=" rounded-full" alt='Not found' src={User}></img></div>
                 <div className=" text-2xl text-white"><IoNotifications /></div>
                 <div className=" text-2xl text-white sm:hidden" onClick={()=>{SetShow(!Show)}}><FaPlus /></div>
-                <div className="text-2xl text-white hidden sm:block"><IoMdChatboxes/></div>
+                <div className="text-2xl text-white hidden sm:block"><Link to={'/chat'}><IoMdChatboxes/></Link> </div>
                 <div className="text-2xl text-white hidden sm:block"><FaUserFriends /></div>
 
             </div>
