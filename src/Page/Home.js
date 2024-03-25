@@ -3,20 +3,25 @@ import DataPost from '../DynamicData.js'
 import Post from "../component/Post.js";
 import UserOnline from "../component/UserOnline.js";
 import  socketIo from'../Socket.io/ConfgrationSocket.js';
-import {useSelector} from 'react-redux'
+import {useSelector} from 'react-redux';
+import { MdCancel } from "react-icons/md";
+
 
 
 import { useEffect, useState } from "react";
+import Api from "../Api/CreateInstanceApi.js";
 
 
 
 const Home=()=>{ 
      const User =useSelector((state)=>state.User);
-     
+     let [showAddPost,setShowAddPost]=useState(false);
+     let [textPost,setTextPost]=useState('')
      let [userOnline,SetuserOnline]=useState([]);
      
+     
      useEffect(()=>{
-        console.log(sessionStorage.getItem('token'));
+        
         socketIo.connect();
         socketIo.emit(`isonline`,User.id);
         socketIo.emit(`onlineFriends`,User.id);
@@ -34,6 +39,14 @@ const Home=()=>{
 
      },[])
      
+     function sendPost(){
+        if(textPost.length>0&&textPost.trim().length&&User.id){
+            Api.post('/post',{own:User.id,text:textPost,date:Date.now()})
+            .then((d)=>{if(d.status==200){setTextPost('');setShowAddPost(false);alert('sucssfuly')}})
+            .catch((e)=>{console.log(e)})
+
+        }
+     }
       
      
        
@@ -53,12 +66,35 @@ const Home=()=>{
                 }
             </div>
             {/*Sdiv*/ }
-            <div className="Containerposts">
-                {
-                    DataPost.Posts.map((ele,ind)=>{
-                        return(  <div key={ind}>  <Post id={ele.id}/>  </div>  )
-                    })
-                }
+            <div className="Containerposts relative ">
+                <div className="  bg-white py-4 ">
+                    <button className=" py-3 flex   w-3/4 mx-auto text-white font-bold p-10 rounded-xl bg-blue-600   "
+                    onClick={()=>{setShowAddPost(true)}}>Add Post</button>
+
+
+                </div>
+
+                <div className={showAddPost?`w-full bg-white transition duration-1000 ease-in-out `:`hidden`}>
+                   <div className="flex justify-end mr-7 "><MdCancel className=" text-3xl text-blue-600 " onClick={()=>{setShowAddPost(false)}} /></div>
+                   <div className="">
+                     <input className="w-full h-32 pl-2" type="text" placeholder="enter what you want?"
+                     onChange={(e)=>{setTextPost(e.target.value)}} value={textPost} ></input>
+                     <br></br>
+                     <button className="bg-blue-600 text-white rounded-2xl ml-3 my-3 h-12 w-2/5 "
+                     onClick={()=>{sendPost()}}>Done</button>
+                   </div>
+
+                </div>
+
+                <div>
+                 {
+                     DataPost.Posts.map((ele,ind)=>{
+                         return(  <div key={ind}>  <Post id={ele.id}/>  </div>  )
+                     })
+                 }
+                </div>
+               
+
             </div>
             {/*Fdiv*/ }
             <div className=" hidden bg-gray-200 rounded-2xl h-dvh xl:block"></div>

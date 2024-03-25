@@ -31,7 +31,7 @@ const Navbar=(data)=>{
 
             </div>
             {/* iterface absloute */}
-            <div className={Show?`flex flex-col pt-6 space-y-5 items-center absolute bg-blue-700 h-40 w-32 rounded-2xl top-16 left-48  `:`hidden`}>
+            <div className={Show?`flex flex-col pt-6 space-y-5 items-center absolute bg-blue-600 z-10 h-40 w-32 rounded-2xl top-16 left-48 sm:hidden  `:`hidden`}>
                 <div className=" text-3xl text-white  sm:hidden  "><IoMdChatboxes/></div>
                 <div className=" text-3xl text-white  sm:hidden  "><FaUserFriends /></div>
             </div>
